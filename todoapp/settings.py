@@ -27,11 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#x4sivg9bn2(g))$!ovu+g^5h1iuxy5o26p+*=munyq51fdwy_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-<<<<<<< HEAD
 DEBUG = False
-=======
-DEBUG = True
->>>>>>> 1e825b9f3b1513010ce1947bdecd6e84668ee396
+
 
 ALLOWED_HOSTS = []
 
@@ -56,10 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-<<<<<<< HEAD
     'whitenoise.middleware.WhiteNoiseMiddleware',
-=======
->>>>>>> 1e825b9f3b1513010ce1947bdecd6e84668ee396
 ]
 
 ROOT_URLCONF = 'todoapp.urls'
