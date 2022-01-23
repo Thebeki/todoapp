@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behruz's TodoApp</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .table{
+      background-color: #084aff;
+    }
+    .rang{
+      margin-left: 35px;
+    }
+    .Yangi{
+      height: 65px;
+      background-color: #084aff;
+      border-radius: 10px;
+    }
+    .Dir{
+      width: 100%;
+      height: 100vh;
+      background-image: linear-gradient(rgb(0, 174, 255),yellow,red);
+    }
+    .dis{
+      width: 380px;
+      height: 180px;
+      background-color: #084aff;
+      margin-top: -16px;
+    }
+
+    .diw{
+      
+      height: 1000px;
+      margin-top: 10px;
+    }
+    .al{
+      background-color: #084aff;
+      height: 2 00px;
+    }
+    .Salom{
+      background-color: yellow;
+    }
+    .Error{
+      width: 100px;
+      border-radius: 15px;
+      font-size: 15px;
+      height: 40px;
+      background-color: rgb(43, 255, 0);
+      border: none;
+
+    }
+    .Error:hover{
+      width: 100px;
+      border-radius: 15px;
+      font-size: 15px;
+      height: 40px;
+      background-color: rgb(31, 184, 0);
+      border: none;
+      
+    }
+    .Error:active{
+      width: 100px;
+      border-radius: 15px;
+      font-size: 15px;
+      height: 40px;
+      background-color: rgb(16, 95, 0);
+      border: none;
+      
+    }
+  </style>
+</head>
+<body>
+   <div class="Dir">
+     
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <div  class="container pt-4">
+    <div  class="row  p-0 mt-4"> 
+      <div  class="col-lg-4 mx-auto shadow p-0">
+        <div class="Yangi" class="alert alert-info">
+          <h2 class="rang">Yangi PLAN qo'shish</h2>
+        </div>
+        <div ` class="dis" class="p-4">
+          <form action="/add-todo/" method="POST">
+            {% csrf_token %}
+            {{form.as_p}} 
+            <hr>
+            <input class="Error" type="submit" value="QO'SHISH" class="btn btn-info">
+          </form>
+        </div>
+      </div>
+
+
+
+      <div class="al" class="col">
+        <div class="border">
+
+          {% if todos|length == 0 %}
+
+          <div class="p-4">
+            <br>
+            <br>
+            <div class="diw" class="alert alert-info text-center">
+              <p class="diu" style="font-size: 30px;">Hozircha hech qanday plan mavjud emas</p>
+            </div>
+            <br>
+            <br>
+          </div>
+
+          {%else%}
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>№</th>
+                  <th>NOMI</th>
+                  <th>QAY HOLATDA</th>
+                  <th>O'CHIRISH YOKI O'ZGARTIRISH</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {% for todo in todos %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{todo.title}}</td>
+                  <td>
+                    {% if todo.jarayon == 'DOING'%}
+                    Bajarilmoqda
+                      {%else%}
+                      Tugatildi 
+                    {%endif%}
+                  </td>
+                  <td>
+                    <a href="/delete-todo/{{todo.id}}" title="Delete" class="">O`chirish | </a>
+                    {% if todo.jarayon == 'DOING'%}
+                    <a href="/change-status/{{todo.id}}/DONE" title="Mark Completed" class="">| Tugatildi</a>
+                    {%else%}
+                    <a href="/change-status/{{todo.id}}/DOING" title="Mark Pending" class="">| Bajarilmoqda</a>
+                    {%endif%}
+                  </td>
+                </tr>
+                {%endfor%}
+
+
+              </tbody>
+            </table>
+          </div>
+          {%endif%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+   </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .Zero{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(rgb(0, 174, 255),yellow,red);
+    }
+    .rang{
+      background-color: #084aff;
+      height: 45px;
+      border-radius: 10px;
+    }
+    .login{
+      border: none;
+      width: 70px;
+      height: 45px;
+      background-color: rgb(43, 255, 0);
+      border-radius: 10px;
+    }
+    .login:hover{
+      border: none;
+      width: 70px;
+      height: 45px;
+      background-color: rgb(31, 184, 0);
+      border-radius: 10px;
+    }
+    .login:active{
+      border: none;
+      width: 70px;
+      height: 45px;
+      background-color: rgb(16, 95, 0);
+      border-radius: 10px;
+    }
+    .Log{
+      margin-left: 100px;
+      margin-top: 50px;
+    }
+    .ABC{
+      margin-left: 300px;
+      width: 500px;
+      background-color: #084aff;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+    <div class="Zero">
+      
+  {% extends 'base.html' %}
+  {% block content %}
+  
+  <div  class="container">
+    <div class="ABC" class="col-lg-4 mx-auto shadow p-0 mt-4">
+      <div class="rang" class="alert alert-info">
+        <h2 class="Log">Login Here</h2>
+      </div>
+      <div class="p-4">
+        <form action="/login/" method="POST">
+          {% csrf_token %}
+          {{form.as_p}}
+          <hr>
+          <input class="login" type="submit" value="Login" class="btn btn-info">
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+
+  
+    </div>
+</body>
+</html>
